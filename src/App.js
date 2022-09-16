@@ -1,25 +1,45 @@
-import React from 'react'
-import logo from './logo.svg'
+import React, { useState } from 'react'
 import './App.css'
+import {
+    Button,
+    Drawer,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemText,
+    Typography,
+} from '@mui/material'
+import { Box } from '@mui/system'
 
-function App() {
+const App = () => {
+    const [open, setOpen] = useState(false)
+
+    const toggleDrawer = () => {
+        setOpen(!open)
+    }
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <>
+            <Typography>Hello world!!</Typography>
+            <Button onClick={() => toggleDrawer()}>Click me!</Button>
+            <Drawer anchor="left" open={open}>
+                <Box onClick={() => toggleDrawer()}>
+                    <List>
+                        {['Inbox', 'Send email', 'Drafts'].map(
+                            (text, index) => (
+                                <ListItem key={text}>
+                                    <ListItemButton
+                                        onClick={() => toggleDrawer()}
+                                    >
+                                        <ListItemText primary={text} />
+                                    </ListItemButton>
+                                </ListItem>
+                            )
+                        )}
+                    </List>
+                </Box>
+            </Drawer>
+        </>
     )
 }
 
