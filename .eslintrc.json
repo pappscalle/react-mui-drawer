@@ -20,4 +20,3 @@
   "plugins": ["react", "testing-library", "jest-dom"],
   "rules": {}
 }
-
